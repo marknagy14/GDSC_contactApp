@@ -5,43 +5,36 @@ import '../../utils/general_utils.dart';
 
 class ContactTile extends StatelessWidget {
   final Contact contact;
+
   const ContactTile({super.key, required this.contact});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 40,
-          backgroundImage: NetworkImage(GeneralUtilities.getUniqueAvatarUrl()),
+    return ListTile(contentPadding: EdgeInsets.zero,
+      leading: CircleAvatar(
+        radius: 40,
+        backgroundImage: NetworkImage(GeneralUtilities.getUniqueAvatarUrl()),
+      ),
+      title: Text(
+        contact.name,
+        style: const TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.w500,
         ),
-        SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              contact.name,
-              style: const TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const Text(
-              'Mobile',
-              style: TextStyle(
-                color: Colors.grey,
-              ),
-            )
-          ],
+      ),
+      subtitle: const Text(
+        'Mobile',
+        style: TextStyle(
+          color: Colors.grey,
         ),
-        Spacer(),
-        Column(
-          children: [
-            Icon(Icons.phone),
-            Text(contact.time),
-          ],
-        ),
-      ],
+      ),
+      trailing: Column(
+        children: [
+          Icon(Icons.phone),
+          Text(contact.time),
+        ],
+      ),
     );
   }
 }
+
